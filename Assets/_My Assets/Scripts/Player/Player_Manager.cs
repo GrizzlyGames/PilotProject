@@ -23,8 +23,10 @@ public class Player_Manager : MonoBehaviour {
     public Movement movement = new Movement();
     public class Movement
     {
-        public float baseSpeed = 4.0F;
-        public float jumpHeight = 8.0F;
+        public bool isSprinting = false;
+        public float walkSpeed = 3.0f;
+        public float sprintSpeed = 6.0f;
+        public bool canDive = true;
         public float gravity = 20.0F;
     }
 
