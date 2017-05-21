@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Player_Weapon.cs" />
     <Compile Include="Assets\_My Assets\Scripts\Camera\Camera_Zoom.cs" />
     <Compile Include="Assets\_My Assets\Scripts\MouseInput_Handler.cs" />
     <Compile Include="Assets\_My Assets\Scripts\Player\Player_Manager.cs" />

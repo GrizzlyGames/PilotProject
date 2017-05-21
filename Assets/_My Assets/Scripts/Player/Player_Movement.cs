@@ -46,11 +46,14 @@ public class Player_Movement : MonoBehaviour
             }
             _moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
             _moveDirection.y -= player.movement.gravity * Time.deltaTime;
-            if (!player.movement.isSprinting)
-                _moveDirection *= player.movement.walkSpeed;
-            else
-                _moveDirection *= player.movement.sprintSpeed;
-            player.component.characterController.Move(_moveDirection * Time.deltaTime);
+            if (!player.component.animator.GetCurrentAnimatorStateInfo(0).IsName("standing_draw_arrow"))
+            {
+                if (!player.movement.isSprinting || player.component.animator.GetBool("isAimming"))
+                    _moveDirection *= player.movement.walkSpeed;
+                else if (!player.component.animator.GetBool("isAimming"))
+                    _moveDirection *= player.movement.sprintSpeed;
+                player.component.characterController.Move(_moveDirection * Time.deltaTime);
+            }            
         }
         else // Is dead
         {
