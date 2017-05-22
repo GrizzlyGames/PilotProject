@@ -79,16 +79,26 @@
     <Reference Include="Facebook.Unity.Settings">
       <HintPath>Library\FacebookSDK\Facebook.Unity.Settings.dll</HintPath>
     </Reference>
+    <Reference Include="RAINMetaform">
+      <HintPath>Assets\RAIN\RAINMetaform.dll</HintPath>
+    </Reference>
+    <Reference Include="RAIN">
+      <HintPath>Assets\RAIN\RAIN.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Player_Weapon.cs" />
+    <Compile Include="Assets\Arrow_Script.cs" />
     <Compile Include="Assets\_My Assets\Scripts\Camera\Camera_Zoom.cs" />
     <Compile Include="Assets\_My Assets\Scripts\MouseInput_Handler.cs" />
     <Compile Include="Assets\_My Assets\Scripts\Player\Player_Manager.cs" />
     <Compile Include="Assets\_My Assets\Scripts\Player\Player_Movement.cs" />
+    <Compile Include="Assets\_My Assets\Scripts\Player_Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AI\BehaviorTrees\Patrol.txt" />
     <None Include="Assets\Imported Assets\_MLK\Materials\Vegetation_D.shader" />
+    <None Include="Assets\RAIN\Editor\ScriptTemplates\BehaviorTreeTemplate.xml" />
+    <None Include="Assets\RAIN\Editor\Shaders\RAINShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
