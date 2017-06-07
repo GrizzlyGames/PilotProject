@@ -12,7 +12,7 @@ public class Camera_Zoom : MonoBehaviour
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0) // forward scroll
             {
-                if (Dis > -3.0f)
+                if (Dis >= -3.0f)
                 {
                     Dis = this.transform.localPosition.z + -0.1f;
                     this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, Dis);

@@ -6,18 +6,18 @@ public class Arrow_Script : MonoBehaviour
 {
     public float force;
     public bool canFire = true;
-    private Rigidbody rigidbody;
+    private Rigidbody myRigidbody;
 
     private void Start()
     {
         if (canFire)
-            rigidbody = GetComponent<Rigidbody>();
+            myRigidbody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
         if (canFire)
-            rigidbody.AddForce(transform.forward * force);
+            myRigidbody.AddForce(transform.forward * force);
     }
 
     private void OnCollisionEnter(Collision collision)
