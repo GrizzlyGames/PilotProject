@@ -13,15 +13,29 @@ public class Player_Weapon : MonoBehaviour {
 
     private void Update () {
         if (Input.GetMouseButtonDown(0) && player.weapon.canFire && player.component.animator.GetBool("isAimming") && player.component.animator.GetBool("arrowNotched")) // Right click
-        {
+        {            
             player.weapon.Shoot();
-
             player.component.animator.SetTrigger("fire");
             player.component.animator.SetBool("arrowNotched", false);            
         }
         if (Input.GetMouseButtonDown(1)) // Right click
         {
+            player.weapon.arrowRealSpeed = player.weapon.arrowBaseSpeed;
+        }
+            if (Input.GetMouseButton(1)) // Right click
+        {
             player.component.animator.SetBool("isAimming", true);
+            
+            if (player.movement.isMoving)
+                player.weapon.arrowRealSpeed = player.weapon.arrowBaseSpeed;
+            else
+            {
+                if(player.weapon.arrowRealSpeed < player.weapon.arrowMaxSpeed)
+                {
+                    player.weapon.arrowRealSpeed += (3 * Time.deltaTime);
+                    //Debug.Log("Player weapon arrowRealSpeed: " + player.weapon.arrowRealSpeed);
+                }
+            }            
         }
         if (Input.GetMouseButtonUp(1)) // Right click
         {

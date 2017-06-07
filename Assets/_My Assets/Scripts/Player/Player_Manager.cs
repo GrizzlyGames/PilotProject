@@ -27,6 +27,7 @@ public class Player_Manager : MonoBehaviour
     [System.Serializable]
     public class Movement
     {
+        public bool isMoving = false;
         public bool isSprinting = false;
         public float walkSpeed = 3.0f;
         public float sprintSpeed = 6.0f;
@@ -39,11 +40,13 @@ public class Player_Manager : MonoBehaviour
     public class Weapon
     {
         public bool canFire = false;
+        public int arrowBaseSpeed = 10;
+        public float arrowRealSpeed = 10;
+        public int arrowMaxSpeed = 25;
         public GameObject staticArrowGO;
         public GameObject dynamicArrowGO;
         public Transform arrowSpawnTrans;
 
-        private float rayDistance = 10;
         private RaycastHit raycastHit;
 
 
@@ -54,14 +57,17 @@ public class Player_Manager : MonoBehaviour
 
             Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
             Vector3 rayDirection = (Camera.main.transform.TransformDirection(Vector3.forward));
-            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.green);
+            Debug.DrawRay(rayOrigin, rayDirection, Color.green);
 
-            // Check if our raycast has hit anything
-            if (Physics.Raycast(rayOrigin, rayDirection, out raycastHit, rayDistance))
-            {
+            if (Physics.Raycast(rayOrigin, rayDirection, out raycastHit))
                 arrowSpawnTrans.LookAt(raycastHit.point);
-                Instantiate(dynamicArrowGO, staticArrowGO.transform.position, arrowSpawnTrans.rotation);
-            }
+            else
+                arrowSpawnTrans.rotation = Quaternion.identity;
+
+
+                GameObject arrowInstance = Instantiate(dynamicArrowGO, staticArrowGO.transform.position, arrowSpawnTrans.rotation) as GameObject;
+            arrowInstance.GetComponent<Arrow_Script>().speed = arrowRealSpeed;
+            arrowRealSpeed = arrowBaseSpeed;
         }
     }
 }

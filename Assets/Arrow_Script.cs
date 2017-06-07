@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Arrow_Script : MonoBehaviour
 {
-    public float force;
+    public float speed = 10;
+    public float gravityForce = 1;
     public bool canFire = true;
     private Rigidbody myRigidbody;
 
@@ -12,16 +13,22 @@ public class Arrow_Script : MonoBehaviour
     {
         if (canFire)
             myRigidbody = GetComponent<Rigidbody>();
+        Debug.Log("Arrow actual speed: " + speed);
+    }
+
+    private void Update()
+    {
+        transform.position += transform.forward * Time.deltaTime * speed;
     }
 
     private void FixedUpdate()
     {
         if (canFire)
-            myRigidbody.AddForce(transform.forward * force);
+            myRigidbody.velocity = Vector3.up * -gravityForce;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        force = 0;
+        speed = 0;
     }
 }

@@ -21,9 +21,11 @@ public class Player_Movement : MonoBehaviour
             player.component.animator.SetFloat("moveZ", Input.GetAxis("Vertical"));
             player.component.animator.SetFloat("lookX", Input.GetAxis("Mouse X"));
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-                player.component.animator.SetBool("isMoving", true);
+                player.movement.isMoving = true;                
             else
-                player.component.animator.SetBool("isMoving", false);
+                player.movement.isMoving = false;
+
+            player.component.animator.SetBool("isMoving", player.movement.isMoving);
 
             if (Input.GetKeyUp(KeyCode.LeftShift) && player.movement.isSprinting)
             {
