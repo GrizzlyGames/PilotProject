@@ -79,14 +79,15 @@
     <Reference Include="Facebook.Unity.Settings">
       <HintPath>Library\FacebookSDK\Facebook.Unity.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="RAINMetaform">
-      <HintPath>Assets\RAIN\RAINMetaform.dll</HintPath>
-    </Reference>
     <Reference Include="RAIN">
       <HintPath>Assets\RAIN\RAIN.dll</HintPath>
     </Reference>
+    <Reference Include="RAINMetaform">
+      <HintPath>Assets\RAIN\RAINMetaform.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AI\Actions\SearchingLocation.cs" />
     <Compile Include="Assets\Arrow_Script.cs" />
     <Compile Include="Assets\_My Assets\Scripts\Camera\Camera_Zoom.cs" />
     <Compile Include="Assets\_My Assets\Scripts\MouseInput_Handler.cs" />

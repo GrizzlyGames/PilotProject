@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player_Manager : MonoBehaviour
 {
-
     public Component component = new Component();
     [System.Serializable]
     public class Component
@@ -40,12 +39,13 @@ public class Player_Manager : MonoBehaviour
     public class Weapon
     {
         public bool canFire = false;
-        public int arrowBaseSpeed = 10;
-        public float arrowRealSpeed = 10;
-        public int arrowMaxSpeed = 25;
+        public int arrowBaseForce = 25;
+        public float arrowRealForce = 25;
+        public int arrowMaxForce = 100;
         public GameObject staticArrowGO;
         public GameObject dynamicArrowGO;
         public Transform arrowSpawnTrans;
+        public Transform arrowContainerTrans;
 
         private RaycastHit raycastHit;
 
@@ -64,10 +64,10 @@ public class Player_Manager : MonoBehaviour
             else
                 arrowSpawnTrans.rotation = Quaternion.identity;
 
-
-                GameObject arrowInstance = Instantiate(dynamicArrowGO, staticArrowGO.transform.position, arrowSpawnTrans.rotation) as GameObject;
-            arrowInstance.GetComponent<Arrow_Script>().speed = arrowRealSpeed;
-            arrowRealSpeed = arrowBaseSpeed;
+            GameObject arrowInstance = Instantiate(dynamicArrowGO, staticArrowGO.transform.position, arrowSpawnTrans.rotation) as GameObject;
+            arrowInstance.GetComponent<Arrow_Script>().force = arrowRealForce;
+            arrowInstance.transform.SetParent(arrowContainerTrans);
+            arrowRealForce = arrowBaseForce;
         }
     }
 }

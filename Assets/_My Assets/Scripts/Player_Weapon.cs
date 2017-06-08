@@ -20,19 +20,19 @@ public class Player_Weapon : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(1)) // Right click
         {
-            player.weapon.arrowRealSpeed = player.weapon.arrowBaseSpeed;
+            player.weapon.arrowRealForce = player.weapon.arrowBaseForce;
         }
             if (Input.GetMouseButton(1)) // Right click
         {
             player.component.animator.SetBool("isAimming", true);
             
             if (player.movement.isMoving)
-                player.weapon.arrowRealSpeed = player.weapon.arrowBaseSpeed;
+                player.weapon.arrowRealForce = player.weapon.arrowBaseForce;
             else
             {
-                if(player.weapon.arrowRealSpeed < player.weapon.arrowMaxSpeed)
-                {
-                    player.weapon.arrowRealSpeed += (3 * Time.deltaTime);
+                if(player.weapon.arrowRealForce < player.weapon.arrowMaxForce)
+                {                    
+                    player.weapon.arrowRealForce +=  (player.weapon.arrowMaxForce / player.weapon.arrowBaseForce)  * Time.deltaTime;
                     //Debug.Log("Player weapon arrowRealSpeed: " + player.weapon.arrowRealSpeed);
                 }
             }            
